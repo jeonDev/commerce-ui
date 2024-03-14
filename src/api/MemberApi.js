@@ -1,7 +1,17 @@
 import axios from "@/config/axios.js";
 
-export default async function signUp(request) {
+export async function signUpApi(request) {
     return await axios.post('/v1/member/signup', request)
+        .then(res => {
+            return res.data;
+        })
+        .catch(err => {
+            return err;
+        })
+}
+
+export async function loginApi(request) {
+    return await axios.post('/v1/member/login', request)
         .then(res => {
             return res.data;
         })

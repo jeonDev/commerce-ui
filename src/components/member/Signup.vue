@@ -1,43 +1,50 @@
 <template>
   <div>
-    <input
-        :value="request.id"
-        @input="e => request.id = e.target.value"
+    <b-form-input
+        type="text"
+        placeholder="아이디"
+        v-model="request.id"
     />
-    <input
-        :value="request.name"
-        @input="e => request.name = e.target.value"
+    <b-form-input
+        type="text"
+        placeholder="이름"
+        v-model="request.name"
     />
-    <input
+    <b-form-input
         type="password"
-        :value="request.password"
-        @input="e => request.password = e.target.value"
+        placeholder="패스워드"
+        v-model="request.password"
     />
-    <input
-        :value="request.tel"
-        @input="e => request.tel = e.target.value"
+    <b-form-input
+        type="tel"
+        placeholder="전화번호"
+        v-model="request.tel"
     />
-    <input
-        :value="request.addr"
-        @input="e => request.addr = e.target.value"
+    <b-form-input
+        type="text"
+        placeholder="주소"
+        v-model="request.addr"
     />
-    <input
-        :value="request.addrDetail"
-        @input="e => request.addrDetail = e.target.value"
+    <b-form-input
+        type="text"
+        placeholder="상세주소"
+        v-model="request.addrDetail"
     />
-    <input
-        :value="request.zipCode"
-        @input="e => request.zipCode = e.target.value"
+    <b-form-input
+        type="text"
+        placeholder="우편번호"
+        v-model="request.zipCode"
     />
-    <button
-      @click="signupApiCall"
-      >회원가입</button>
-    {{request}}
+    <b-button
+        variant="success"
+        @click="signupApiCall"
+      >회원가입</b-button>
   </div>
 </template>
 
 <script>
-import signUp from "@/api/MemberApi.js";
+
+import {signUpApi} from "@/api/MemberApi.js";
 
 export default {
   data() {
@@ -55,8 +62,7 @@ export default {
   },
   methods: {
     async signupApiCall() {
-      const res = await signUp(this.request);
-
+      const res = await signUpApi(this.request);
     }
   }
 }
