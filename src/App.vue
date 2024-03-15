@@ -1,15 +1,25 @@
 <template>
   <div id="app">
     <Modal/>
-    <header>
-      <Header/>
-    </header>
-    <section>
-      <router-view/>
-    </section>
-    <footer>
+    <b-card no-body>
+      <header>
+        <b-card-header header-tag="nav">
+          <Header/>
+        </b-card-header>
+      </header>
 
-    </footer>
+      <section>
+        <b-card-body>
+          <router-view/>
+        </b-card-body>
+      </section>
+
+      <footer>
+
+      </footer>
+    </b-card>
+
+
   </div>
 </template>
 

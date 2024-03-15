@@ -1,5 +1,5 @@
 <template>
-  <div class="container w-50 m-auto">
+  <div class="container w-50  m-auto">
     <div class="m-2">
       <b-form-input
           type="text"
