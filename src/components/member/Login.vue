@@ -41,7 +41,9 @@ export default {
   methods: {
     async loginApiCall() {
       const res = await loginApi(this.request);
-      modalSetting(res.code, res.message, () => {});
+      modalSetting('로그인',
+          res.code,
+          res.message);
     }
   }
 }

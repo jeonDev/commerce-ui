@@ -80,7 +80,9 @@ export default {
   methods: {
     async signupApiCall() {
       const res = await signUpApi(this.request);
-      modalSetting(res.code, res.message, () => {});
+      modalSetting('회원가입',
+          res.code,
+          res.message);
     }
   }
 }
