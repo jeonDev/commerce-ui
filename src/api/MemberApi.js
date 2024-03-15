@@ -6,7 +6,7 @@ export async function signUpApi(request) {
             return res.data;
         })
         .catch(err => {
-            return err;
+            return err.response.data;
         })
 }
 
@@ -16,6 +16,6 @@ export async function loginApi(request) {
             return res.data;
         })
         .catch(err => {
-            return err;
+            return err.response.data;
         })
 }
