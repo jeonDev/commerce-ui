@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Modal/>
     <header>
       <Header/>
     </header>
@@ -14,6 +15,7 @@
 
 <script setup>
 import Header from "@/components/common/Header.vue";
+import Modal from "@/components/layout/Modal.vue";
 
 </script>
 
