@@ -2,7 +2,6 @@ import store from "@/store/index.js";
 
 /**
  * Modal 호출
- * code | message | callback
  * */
 const modalSetting = (title, code, message, callback, isSuccessBtn, successCallback) => {
     store.commit('showModal', {
@@ -15,6 +14,17 @@ const modalSetting = (title, code, message, callback, isSuccessBtn, successCallb
     });
 }
 
+/**
+ * Token Set 호출
+ * */
+const tokenSetting = (userInfo) => {
+    store.commit('setToken', userInfo);
+}
+
+const getUserInfo = () => {
+    return store.state.userStore;
+}
+
 export {
-    modalSetting
+    modalSetting, tokenSetting, getUserInfo
 }
