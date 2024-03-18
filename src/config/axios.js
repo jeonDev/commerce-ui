@@ -1,5 +1,6 @@
 import axios from "axios";
 import {getUserInfo} from "@/utils/utils.js";
+import store from "@/store/index.js";
 
 const instance = axios.create({
     baseURL: import.meta.env.VITE_API_URL
@@ -22,6 +23,12 @@ instance.interceptors.response.use(
     function (response) {
         return response;
     }, function (error) {
+        if(error.response.status === 401) {
+            store.commit('showModal', {
+                code: '',
+                message: '로그인 정보 없음'
+            })
+        }
         return Promise.reject(error);
     }
 )

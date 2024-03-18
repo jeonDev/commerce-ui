@@ -5,6 +5,7 @@
       <div
           class="border"
           v-for="item in response"
+          @click="moveDetailPage(item.productInfoSeq)"
       >
         <div>
           {{item.productName}}
@@ -36,6 +37,9 @@ export default {
     async productListGetApiCall() {
       const res = await productListApi();
       this.response = res.data;
+    },
+    moveDetailPage(productInfoSeq) {
+      this.$router.push({path:`/product/${productInfoSeq}`})
     }
   },
   created() {
