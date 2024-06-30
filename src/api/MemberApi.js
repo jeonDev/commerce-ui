@@ -11,7 +11,7 @@ export async function signUpApi(request) {
 }
 
 export async function loginApi(request) {
-    return await axios.post('/v1/member/login', request)
+    return await axios.post('/login', request)
         .then(res => {
             return res.data;
         })

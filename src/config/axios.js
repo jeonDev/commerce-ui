@@ -28,6 +28,11 @@ instance.interceptors.response.use(
                 code: '',
                 message: '로그인 정보 없음'
             })
+        } else if (error.response.status === 403) {
+            store.commit('showModal', {
+                code: '',
+                message: '접근 권한 없음'
+            })
         }
         return Promise.reject(error);
     }
