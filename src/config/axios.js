@@ -3,7 +3,8 @@ import {getUserInfo} from "@/utils/utils.js";
 import store from "@/store/index.js";
 
 const instance = axios.create({
-    baseURL: import.meta.env.VITE_API_URL
+    baseURL: import.meta.env.VITE_API_URL,
+    withCredentials: true
 })
 
 instance.interceptors.request.use(
