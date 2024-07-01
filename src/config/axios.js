@@ -22,12 +22,33 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
     function (response) {
         return response;
-    }, function (error) {
-        if(error.response.status === 401) {
-            store.commit('showModal', {
-                code: '',
-                message: '로그인 정보 없음'
-            })
+    }, async function (error) {
+        const originalRequest = error.config;
+
+        if(error.response.status === 401 && !originalRequest._retry) {
+
+            const issue = await axios.post(
+                import.meta.env.VITE_API_URL + "tokenReIssue", {},
+                {
+                    headers: {
+                        Authorization: 'Bearer ' + sessionStorage.getItem("token")
+                    },
+                    withCredentials: true
+                });
+
+            if (issue.data.code === '0000') {
+                const accessToken = issue.data.data;
+                sessionStorage.setItem("token", accessToken);
+                originalRequest._retry = true;
+                originalRequest.headers['Authorization'] = 'Bearer ' + accessToken;
+
+                return instance(originalRequest);
+            } else {
+                store.commit('showModal', {
+                    code: '',
+                    message: '로그인 정보 없음'
+                })
+            }
         } else if (error.response.status === 403) {
             store.commit('showModal', {
                 code: '',
