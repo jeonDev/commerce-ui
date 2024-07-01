@@ -27,7 +27,7 @@
 
 
 import {loginApi} from "@/api/MemberApi.js";
-import {modalSetting, tokenSetting} from "@/utils/utils.js";
+import {modalSetting} from "@/utils/utils.js";
 
 export default {
   data() {
@@ -42,7 +42,8 @@ export default {
     async loginApiCall() {
       const res = await loginApi(this.request);
       if(res.code === '0000') {
-        tokenSetting(res.data);
+        const accessToken = res.data.accessToken;
+        sessionStorage.setItem("token", accessToken);
       }
       modalSetting('로그인',
           res.code,

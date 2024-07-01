@@ -14,17 +14,6 @@ const modalSetting = (title, code, message, callback, isSuccessBtn, successCallb
     });
 }
 
-/**
- * Token Set 호출
- * */
-const tokenSetting = (userInfo) => {
-    store.commit('setToken', userInfo);
-}
-
-const getUserInfo = () => {
-    return store.state.userStore;
-}
-
 export {
-    modalSetting, tokenSetting, getUserInfo
+    modalSetting
 }

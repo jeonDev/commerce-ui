@@ -1,5 +1,4 @@
 import axios from "axios";
-import {getUserInfo} from "@/utils/utils.js";
 import store from "@/store/index.js";
 
 const instance = axios.create({
@@ -10,7 +9,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
     function (config) {
 
-        const token = getUserInfo().accessToken;
+        const token = sessionStorage.getItem("token");
         if(token != null && token !== '') {
             config.headers.Authorization = 'Bearer ' + token;
         }
