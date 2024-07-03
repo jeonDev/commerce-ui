@@ -4,6 +4,7 @@ import Signup from "@/components/member/Signup.vue";
 import Login from "@/components/member/Login.vue";
 import ProductList from "@/components/product/ProductList.vue";
 import ProductDetail from "@/components/product/ProductDetail.vue";
+import AdminProductManage from "@/components/admin/AdminProductManage.vue";
 
 const routes = [
     { path: '/', component: Main},
@@ -12,6 +13,8 @@ const routes = [
 
     { path: '/product', component: ProductList},
     { path: '/product/:productInfoSeq', component: ProductDetail},
+
+    { path: '/admin/product/manage', component: AdminProductManage}
 ]
 
 

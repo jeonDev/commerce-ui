@@ -43,7 +43,9 @@ export default {
       const res = await loginApi(this.request);
       if(res.code === '0000') {
         const accessToken = res.data.accessToken;
+        const authority = res.data.authority;
         sessionStorage.setItem("token", accessToken);
+        sessionStorage.setItem("authority", authority);
       }
       modalSetting('로그인',
           res.code,

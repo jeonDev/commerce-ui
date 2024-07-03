@@ -1,7 +1,7 @@
 <template>
   <b-nav card-header tabs>
     <b-nav-item
-        v-for="item in routers"
+        v-for="item in routeList"
         :key="item.url"
         :active="isNavActive(item.url)"
     >
@@ -15,11 +15,17 @@ export default {
   data() {
     return {
       routers: [
-        {url: '/', title: '메인'},
-        {url: '/login', title: '로그인'},
-        {url: '/signup', title: '회원가입'},
-        {url: '/product', title: '상품목록'},
+        {url: '/', title: '메인', authority: ''},
+        {url: '/login', title: '로그인', authority: ''},
+        {url: '/signup', title: '회원가입', authority: ''},
+        {url: '/product', title: '상품목록', authority: ''},
+        {url: '/admin/product/manage', title: '관리자', authority: 'ROLE_ADMIN'},
       ]
+    }
+  },
+  computed: {
+    routeList() {
+      return this.routers.filter(item => item.authority === '' || item.authority === sessionStorage.getItem('authority'));
     }
   },
   methods: {
