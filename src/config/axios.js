@@ -40,22 +40,22 @@ instance.interceptors.response.use(
                         Authorization: 'Bearer ' + sessionStorage.getItem("token")
                     },
                     withCredentials: true
-                }).then((res) => {
-                    if (issue.data.code === '0000') {
-                        const accessToken = issue.data.data;
-                        sessionStorage.setItem("token", accessToken);
-
-                        originalRequest._retry = true;
-                        originalRequest.headers['Authorization'] = 'Bearer ' + accessToken;
-
-                        return instance(originalRequest);
-                    } else {
-                        unauthorizedProcess()
-                    }
                 })
                 .catch((err) => {
                     unauthorizedProcess()
                 });
+
+            if (issue.data.code === '0000') {
+                const accessToken = issue.data.data;
+                sessionStorage.setItem("token", accessToken);
+
+                originalRequest._retry = true;
+                originalRequest.headers['Authorization'] = 'Bearer ' + accessToken;
+
+                return instance(originalRequest);
+            } else {
+                unauthorizedProcess()
+            }
 
         } else if (error.response.status === 403) {
             store.commit('showModal', {
