@@ -26,6 +26,12 @@ instance.interceptors.response.use(
         const originalRequest = error.config;
 
         if(error.response.status === 401 && !originalRequest._retry) {
+            const token = sessionStorage.getItem("token");
+            console.log(token);
+            if (token == null) {
+                unauthorizedProcess();
+                return Promise.reject(error);
+            }
 
             const issue = await axios.post(
                 import.meta.env.VITE_API_URL + "tokenReIssue", {},
@@ -34,21 +40,23 @@ instance.interceptors.response.use(
                         Authorization: 'Bearer ' + sessionStorage.getItem("token")
                     },
                     withCredentials: true
+                }).then((res) => {
+                    if (issue.data.code === '0000') {
+                        const accessToken = issue.data.data;
+                        sessionStorage.setItem("token", accessToken);
+
+                        originalRequest._retry = true;
+                        originalRequest.headers['Authorization'] = 'Bearer ' + accessToken;
+
+                        return instance(originalRequest);
+                    } else {
+                        unauthorizedProcess()
+                    }
+                })
+                .catch((err) => {
+                    unauthorizedProcess()
                 });
 
-            if (issue.data.code === '0000') {
-                const accessToken = issue.data.data;
-                sessionStorage.setItem("token", accessToken);
-                originalRequest._retry = true;
-                originalRequest.headers['Authorization'] = 'Bearer ' + accessToken;
-
-                return instance(originalRequest);
-            } else {
-                store.commit('showModal', {
-                    code: '',
-                    message: '로그인 정보 없음'
-                })
-            }
         } else if (error.response.status === 403) {
             store.commit('showModal', {
                 code: '',
@@ -58,5 +66,14 @@ instance.interceptors.response.use(
         return Promise.reject(error);
     }
 )
+
+const unauthorizedProcess = () => {
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("authority");
+    store.commit('showModal', {
+        code: '',
+        message: '로그인 정보 없음'
+    })
+}
 
 export default instance;
