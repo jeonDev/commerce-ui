@@ -18,6 +18,11 @@
             {{productInfo.price}}
           </span>
         </div>
+        <div v-if="productInfo.productOptions.length > 0">
+          <b-form-select v-for="item in productInfo.productOptions">
+            <b-form-select-option>{{item}}</b-form-select-option>
+          </b-form-select>
+        </div>
         <div>
           <b-button>
             구매하기
@@ -37,7 +42,12 @@ import {productDetailApi} from "@/api/ProductApi.js";
 export default {
   data() {
     return {
-      productInfo: []
+      productInfo: {
+        productName: '',
+        price: 0,
+        productOptions: [],
+        productDetail: ''
+      }
     }
   },
   methods: {
