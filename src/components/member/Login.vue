@@ -4,6 +4,7 @@
       <b-form-input
           type="text"
           placeholder="아이디"
+          v-on:keyup.enter="loginApiCall"
           v-model="request.id"
       />
     </div>
@@ -11,6 +12,7 @@
       <b-form-input
           type="password"
           placeholder="패스워드"
+          v-on:keyup.enter="loginApiCall"
           v-model="request.password"
       />
     </div>
@@ -27,7 +29,7 @@
 
 
 import {loginApi} from "@/api/MemberApi.js";
-import {modalSetting} from "@/utils/utils.js";
+import {isNullOrEmpty, modalSetting} from "@/utils/utils.js";
 
 export default {
   data() {
@@ -40,6 +42,11 @@ export default {
   },
   methods: {
     async loginApiCall() {
+
+      if (isNullOrEmpty(this.request.id) || isNullOrEmpty(this.request.password)) {
+        return;
+      }
+
       const res = await loginApi(this.request);
       if(res.code === '0000') {
         const accessToken = res.data.accessToken;

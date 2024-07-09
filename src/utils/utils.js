@@ -14,6 +14,14 @@ const modalSetting = (title, code, message, callback, isSuccessBtn, successCallb
     });
 }
 
+/**
+ * 값 확인
+ */
+const isNullOrEmpty = (str) => {
+    return str === null || str === undefined || str === '';
+}
+
 export {
-    modalSetting
+    modalSetting,
+    isNullOrEmpty
 }
