@@ -14,8 +14,8 @@ export default {
     }
   },
   methods: {
-    async productDetailGetApiCall() {
-      const res = await productDetailApi();
+    async productDetailGetApiCall(productInfoSeq) {
+      const res = await productDetailApi(productInfoSeq);
       this.response = res.data;
     },
   },
