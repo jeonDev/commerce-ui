@@ -3,21 +3,28 @@
     <!--  상품 목록  -->
     <div>
       <div
-          class="border"
+          class="border p-2 m-2 bg-body-secondary"
           v-for="item in response"
           @click="moveDetailPage(item.productInfoSeq)"
       >
         <div>
-          {{item.productName}}
+          상품명 : {{item.productName}}
         </div>
         <div>
-          {{item.productDetail}}
+          <span>
+            가격 : {{item.price}}
+          </span>
+          <span v-if="item.discountPrice" style="font-size: 12px; color: orangered">
+            (할인 가격 : {{item.discountPrice}})
+          </span>
         </div>
-        <div>
-          {{item.discountPrice}} {{item.price}}
-        </div>
-        <div v-for="opt in item.productOptions">
-          {{opt}}
+        <div class="d-flex" v-if="item.productOptions.length > 0">
+          <div>
+            옵션 :
+          </div>
+          <div v-for="opt in item.productOptions">
+            {{opt}}
+          </div>
         </div>
       </div>
     </div>
