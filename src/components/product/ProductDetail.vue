@@ -19,8 +19,8 @@
           </span>
         </div>
         <div v-if="productInfo.productOptions.length > 0">
-          <b-form-select v-for="item in productInfo.productOptions">
-            <b-form-select-option>{{item}}</b-form-select-option>
+          <b-form-select >
+            <b-form-select-option v-for="item in productInfo.productOptions">{{item}}</b-form-select-option>
           </b-form-select>
         </div>
         <div>
