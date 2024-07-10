@@ -19,7 +19,7 @@ export default {
         {url: '/login', title: '로그인', authority: ''},
         {url: '/signup', title: '회원가입', authority: ''},
         {url: '/product', title: '상품목록', authority: ''},
-        {url: '/admin/product/manage', title: '관리자', authority: 'ROLE_ADMIN'},
+        {url: '/admin/product/manage', title: '상품관리 - 관리자', authority: 'ROLE_ADMIN'},
       ]
     }
   },
