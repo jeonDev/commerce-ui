@@ -58,14 +58,14 @@
           label-for="input-sm"
       >
         <div class="d-flex">
-          <div class="d-flex justify-content-start" v-for="(item, idx) in request.productOptionsCodes">
+          <div class="d-flex justify-content-start" v-for="(item, idx) in request.productOptions">
             <b-form-input
                 id="input-sm"
                 size="sm"
                 type="text"
                 placeholder="옵션"
-                :disabled="request.productOptionsCodes.length > (idx + 1)"
-                v-model="request.productOptionsCodes[idx]"
+                :disabled="request.productOptions.length > (idx + 1)"
+                v-model="request.productOptions[idx]"
             />
           </div>
           <div>
@@ -100,18 +100,18 @@ export default {
         "productName": "",
         "productDetail": "",
         "price": "",
-        "productOptionsCodes": []
+        "productOptions": []
       }
     }
   },
   methods: {
     addProductOptions() {
-      const length = this.request.productOptionsCodes.length;
+      const length = this.request.productOptions.length;
       if (length > 0
-          && isNullOrEmpty(this.request.productOptionsCodes[length - 1])) {
+          && isNullOrEmpty(this.request.productOptions[length - 1])) {
         return;
       }
-      this.request.productOptionsCodes.push('');
+      this.request.productOptions.push('');
     },
     addProduct() {
       adminProductAdd(this.request);
