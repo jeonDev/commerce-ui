@@ -26,6 +26,9 @@
             {{opt}}
           </div>
         </div>
+        <div>
+          {{item.productStockSummaryName}}
+        </div>
       </div>
     </div>
   </div>
