@@ -48,15 +48,16 @@ export default {
       }
 
       const res = await loginApi(this.request);
+      modalSetting('로그인',
+          res.code,
+          res.message);
       if(res.code === '0000') {
         const accessToken = res.data.accessToken;
         const authority = res.data.authority;
         sessionStorage.setItem("token", accessToken);
         sessionStorage.setItem("authority", authority);
+        location.href = '/';
       }
-      modalSetting('로그인',
-          res.code,
-          res.message);
     }
   }
 }
