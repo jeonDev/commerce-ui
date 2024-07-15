@@ -19,3 +19,13 @@ export async function loginApi(request) {
             return err.response.data;
         })
 }
+
+export async function getMyUserInfo(request) {
+    return await axios.get('/v1/myInfo', request)
+        .then(res => {
+            return res.data;
+        })
+        .catch(err => {
+            return err.response.data;
+        })
+}
