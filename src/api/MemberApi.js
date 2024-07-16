@@ -20,8 +20,18 @@ export async function loginApi(request) {
         })
 }
 
-export async function getMyUserInfo(request) {
-    return await axios.get('/v1/myInfo', request)
+export async function getMyUserInfo() {
+    return await axios.get('/v1/myInfo')
+        .then(res => {
+            return res.data;
+        })
+        .catch(err => {
+            return err.response.data;
+        })
+}
+
+export async function updateUserInfo(request) {
+    return await axios.put('/v1/member/update', request)
         .then(res => {
             return res.data;
         })
