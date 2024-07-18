@@ -118,7 +118,7 @@
               size="sm"
               variant="outline-success"
               style="white-space: nowrap"
-              @click="addPoint"
+              @click="isShow = true"
           >
             충전
           </b-button>
@@ -141,6 +141,28 @@
         회원탈퇴
       </b-button>
     </div>
+
+    <b-modal
+        hide-footer
+        title="충전"
+        v-model="isShow"
+    >
+      <div class="d-flex justify-content-end">
+        <b-form-input
+            type="number"
+            id="input-sm"
+            size="sm"
+            placeholder="충전금액"
+            v-model="point"
+        />
+        <div class="p-2"></div>
+        <b-button
+            class="w-25 bg-success"
+            @click="addPoint"
+        >충전</b-button>
+      </div>
+    </b-modal>
+
   </div>
 </template>
 
@@ -148,6 +170,8 @@
 
 
 import {getMyUserInfo, updateUserInfo} from "@/api/MemberApi.js";
+import {pointAdjustment} from "@/api/PointApi.js";
+import {modalSetting} from "@/utils/utils.js";
 
 export default {
   data() {
@@ -160,7 +184,9 @@ export default {
         addrDetail: '',
         zipCode : '',
         point: 0
-      }
+      },
+      isShow: false,
+      point: 0
     }
   },
   methods: {
@@ -174,6 +200,18 @@ export default {
     },
     async addPoint() {
       // TODO: 포인트 충전
+      const res = await pointAdjustment({
+        pointProcessStatus: '0',
+        point: this.point
+      });
+
+      this.isShow = false;
+      if (res.code === '0000') {
+        this.getUserInfo();
+        this.point = 0;
+      }
+      modalSetting('충전 결과', res.code, res.message)
+
     },
     async terminate() {
       // TODO: 회원 탈퇴
