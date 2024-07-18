@@ -9,3 +9,13 @@ export async function pointAdjustment(request) {
             return err.response.data;
         })
 }
+
+export async function selectPointHistory() {
+    return await axios.get('/v1/point/history')
+        .then(res => {
+            return res.data;
+        })
+        .catch(err => {
+            return err.response.data;
+        })
+}

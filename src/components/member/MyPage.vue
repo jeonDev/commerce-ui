@@ -118,11 +118,18 @@
               size="sm"
               variant="outline-success"
               style="white-space: nowrap"
-              @click="isShow = true"
+              @click="isPointShow = true"
           >
             충전
           </b-button>
-
+          <b-button
+              size="sm"
+              variant="outline-success"
+              style="white-space: nowrap"
+              @click="pointAdjustmentHistory"
+          >
+            충전내역 확인
+          </b-button>
         </div>
       </b-form-group>
     </div>
@@ -145,7 +152,7 @@
     <b-modal
         hide-footer
         title="충전"
-        v-model="isShow"
+        v-model="isPointShow"
     >
       <div class="d-flex justify-content-end">
         <b-form-input
@@ -163,6 +170,16 @@
       </div>
     </b-modal>
 
+    <b-modal
+        hide-footer
+        title="충전내역"
+        v-model="isPointHistoryShow"
+    >
+      <div v-for="item in pointHistory">
+        {{item.point}} {{item.createDate}} {{item.pointProcessStatus}}
+      </div>
+    </b-modal>
+
   </div>
 </template>
 
@@ -170,7 +187,7 @@
 
 
 import {getMyUserInfo, updateUserInfo} from "@/api/MemberApi.js";
-import {pointAdjustment} from "@/api/PointApi.js";
+import {pointAdjustment, selectPointHistory} from "@/api/PointApi.js";
 import {modalSetting} from "@/utils/utils.js";
 
 export default {
@@ -185,8 +202,10 @@ export default {
         zipCode : '',
         point: 0
       },
-      isShow: false,
-      point: 0
+      isPointShow: false,
+      isPointHistoryShow: false,
+      point: 0,
+      pointHistory: []
     }
   },
   methods: {
@@ -205,13 +224,18 @@ export default {
         point: this.point
       });
 
-      this.isShow = false;
+      this.isPointShow = false;
       if (res.code === '0000') {
         this.getUserInfo();
         this.point = 0;
       }
       modalSetting('충전 결과', res.code, res.message)
 
+    },
+    async pointAdjustmentHistory() {
+      this.isPointHistoryShow = true;
+      const res = await selectPointHistory();
+      if (res.code === '0000') this.pointHistory = res.response;
     },
     async terminate() {
       // TODO: 회원 탈퇴
