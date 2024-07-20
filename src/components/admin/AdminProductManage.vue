@@ -90,7 +90,7 @@
 </template>
 
 <script>
-import {isNullOrEmpty} from "@/utils/utils.js";
+import {isNullOrEmpty, modalSetting} from "@/utils/utils.js";
 import {adminProductAdd} from "@/api/ProductApi.js";
 
 export default {
@@ -113,8 +113,9 @@ export default {
       }
       this.request.productOptions.push('');
     },
-    addProduct() {
-      adminProductAdd(this.request);
+    async addProduct() {
+      const res = await adminProductAdd(this.request);
+      modalSetting('등록 결과', res.code, res.message)
     }
   }
 }
