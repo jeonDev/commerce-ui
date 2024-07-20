@@ -32,7 +32,9 @@
           </b-form-select>
         </div>
         <div>
-          <b-button>
+          <b-button
+              @click="moveOrderPage"
+          >
             구매하기
           </b-button>
         </div>
@@ -69,6 +71,12 @@ export default {
         modalSetting("조회", res.code, res.message)
       }
     },
+    moveOrderPage() {
+      if (this.productSeq == null) return;
+      this.$router.push({path:`/order/${this.productSeq}`})
+
+
+    }
   },
   created() {
     this.productDetailGetApiCall(this.$route.params.productInfoSeq)

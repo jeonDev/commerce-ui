@@ -6,6 +6,7 @@ import ProductList from "@/components/product/ProductList.vue";
 import ProductDetail from "@/components/product/ProductDetail.vue";
 import AdminProductManage from "@/components/admin/AdminProductManage.vue";
 import MyPage from "@/components/member/MyPage.vue";
+import Order from "@/components/order/Order.vue";
 
 const routes = [
     { path: '/', component: Main},
@@ -15,6 +16,8 @@ const routes = [
 
     { path: '/product', component: ProductList},
     { path: '/product/:productInfoSeq', component: ProductDetail},
+
+    { path: '/order/:productSeq', component: Order},
 
     { path: '/admin/product/manage', component: AdminProductManage}
 ]
