@@ -23,7 +23,7 @@
             옵션 :
           </div>
           <div class="me-1" v-for="opt in item.productOptions">
-            {{opt}}
+            {{opt.productOption}}
           </div>
         </div>
         <div>

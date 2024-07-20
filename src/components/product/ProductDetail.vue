@@ -19,8 +19,16 @@
           </span>
         </div>
         <div v-if="productInfo.productOptions.length > 0">
-          <b-form-select >
-            <b-form-select-option v-for="item in productInfo.productOptions">{{item}}</b-form-select-option>
+          <b-form-select
+              v-model="productSeq"
+          >
+            <b-form-select-option value=null>선택</b-form-select-option>
+            <b-form-select-option
+                v-for="item in productInfo.productOptions"
+                :value="item.productSeq"
+            >
+              {{item.productOption}}
+            </b-form-select-option>
           </b-form-select>
         </div>
         <div>
@@ -38,6 +46,7 @@
 
 <script>
 import {productDetailApi} from "@/api/ProductApi.js";
+import {modalSetting} from "@/utils/utils.js";
 
 export default {
   data() {
@@ -47,7 +56,8 @@ export default {
         price: 0,
         productOptions: [],
         productDetail: ''
-      }
+      },
+      productSeq: null
     }
   },
   methods: {
@@ -56,7 +66,7 @@ export default {
       if (res.code === '0000') {
         this.productInfo = res.data;
       } else {
-        // TODO: Error Modal
+        modalSetting("조회", res.code, res.message)
       }
     },
   },
