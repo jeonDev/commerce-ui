@@ -11,7 +11,7 @@ export async function productListApi() {
 }
 
 export async function productDetailApi(productInfoSeq) {
-    return await axios.get('/v1/product/' + productInfoSeq)
+    return await axios.get('/v1/productInfo/' + productInfoSeq)
         .then(res => {
             return res.data;
         })
