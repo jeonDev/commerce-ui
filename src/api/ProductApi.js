@@ -20,6 +20,16 @@ export async function productDetailApi(productInfoSeq) {
         })
 }
 
+export async function productApi(productSeq) {
+    return await axios.get('/v1/product/' + productSeq)
+        .then(res => {
+            return res.data;
+        })
+        .catch(err => {
+            return err.response.data;
+        })
+}
+
 export async function adminProductAdd(productInfo) {
     return await axios.post('admin/product/register', productInfo)
         .then(res => {

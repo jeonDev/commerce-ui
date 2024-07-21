@@ -73,7 +73,16 @@ export default {
     },
     moveOrderPage() {
       if (this.productSeq == null) return;
-      this.$router.push({path:`/order/${this.productSeq}`})
+      const data = [{
+        productSeq: this.productSeq,
+        cnt: 1
+      }]
+      this.$router.push({
+        name:`order`,
+        params: {
+          product: JSON.stringify(data)
+        }
+      })
 
 
     }
