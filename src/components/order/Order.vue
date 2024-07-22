@@ -91,6 +91,7 @@
 
 import {productApi} from "@/api/ProductApi.js";
 import {modalSetting} from "@/utils/utils.js";
+import {orderApi, paymentApi} from "@/api/Order.js";
 
 export default {
   data() {
@@ -106,7 +107,26 @@ export default {
   },
   methods: {
     async payment() {
+      const buyProducts = this.orderProduct.map(item => {
+        return {
+          productSeq : item.productSeq,
+          cnt : 2
+        }
+      });
+      const res = await orderApi({
+        buyProducts: buyProducts
+      })
 
+      if (res.code === '0000') {
+        const orderSeq = res.data;
+        const paymentRes = await paymentApi({
+          orderSeq : orderSeq
+        });
+
+        console.log(paymentRes);
+      } else {
+        modalSetting("주문 실패", res.code, res.message);
+      }
     },
     async productDetailGetApiCall() {
       const product = JSON.parse(this.$route.params.product);
