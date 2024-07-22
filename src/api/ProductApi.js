@@ -1,7 +1,7 @@
 import axios from "@/config/axios.js";
 
 export async function productListApi() {
-    return await axios.get('/v1/product/view')
+    return await axios.get('/v2/product/view')
         .then(res => {
             return res.data;
         })
@@ -11,7 +11,7 @@ export async function productListApi() {
 }
 
 export async function productDetailApi(productInfoSeq) {
-    return await axios.get('/v1/productInfo/' + productInfoSeq)
+    return await axios.get('/v2/productInfo/' + productInfoSeq)
         .then(res => {
             return res.data;
         })
@@ -21,7 +21,7 @@ export async function productDetailApi(productInfoSeq) {
 }
 
 export async function productApi(productSeq) {
-    return await axios.get('/v1/product/' + productSeq)
+    return await axios.get('/v2/product/' + productSeq)
         .then(res => {
             return res.data;
         })
