@@ -2,7 +2,7 @@
   <div class="container">
     <div>
       <ProductView
-          :product-list="response"
+          :product-list="response.list"
       />
     </div>
   </div>
@@ -16,12 +16,16 @@ export default {
   components: {ProductView},
   data() {
     return {
-      response: []
+      response: [],
+      page: {
+        pageNumber: 0,
+        pageSize: 5
+      }
     }
   },
   methods: {
     async productListGetApiCall() {
-      const res = await productListApi();
+      const res = await productListApi(this.page);
       this.response = res.data;
     },
   },

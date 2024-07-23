@@ -1,7 +1,7 @@
 import axios from "@/config/axios.js";
 
-export async function productListApi() {
-    return await axios.get('/v2/product/view')
+export async function productListApi(request) {
+    return await axios.get('/v2/product/view', {params: request})
         .then(res => {
             return res.data;
         })
