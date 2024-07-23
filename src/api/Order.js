@@ -19,3 +19,13 @@ export async function paymentApi(request) {
             return err.response.data;
         })
 }
+
+export async function orderViewGetApi(request) {
+    return await axios.get('/admin/order/view', request)
+        .then(res => {
+            return res.data;
+        })
+        .catch(err => {
+            return err.response.data;
+        })
+}

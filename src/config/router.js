@@ -7,6 +7,7 @@ import ProductDetail from "@/components/product/ProductDetail.vue";
 import AdminProductManage from "@/components/admin/AdminProductManage.vue";
 import MyPage from "@/components/member/MyPage.vue";
 import Order from "@/components/order/Order.vue";
+import AdminOrderList from "@/components/admin/AdminOrderList.vue";
 
 const routes = [
     { path: '/', component: Main},
@@ -19,7 +20,8 @@ const routes = [
 
     { path: '/order/:product', name: 'order', component: Order},
 
-    { path: '/admin/product/manage', component: AdminProductManage}
+    { path: '/admin/product/manage', component: AdminProductManage},
+    { path: '/admin/order/list', component: AdminOrderList}
 ]
 
 
