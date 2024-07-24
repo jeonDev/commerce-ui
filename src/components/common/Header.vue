@@ -16,11 +16,9 @@ export default {
     return {
       routers: [
         {url: '/', title: '메인', authority: ''},
-        {url: '/login', title: '로그인', authority: ''},
-        {url: '/signup', title: '회원가입', authority: ''},
-        {url: '/mypage', title: '마이페이지', authority: 'ROLE_USER'},
         {url: '/product', title: '상품목록', authority: ''},
         {url: '/admin/product/manage', title: '상품관리 - 관리자', authority: 'ROLE_ADMIN'},
+        {url: '/admin/product/stock/manage', title: '상품재고관리 - 관리자', authority: 'ROLE_ADMIN'},
         {url: '/admin/order/list', title: '주문관리 - 관리자', authority: 'ROLE_ADMIN'},
       ]
     }

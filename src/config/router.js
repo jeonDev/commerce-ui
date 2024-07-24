@@ -8,10 +8,12 @@ import AdminProductManage from "@/components/admin/AdminProductManage.vue";
 import MyPage from "@/components/member/MyPage.vue";
 import Order from "@/components/order/Order.vue";
 import AdminOrderList from "@/components/admin/AdminOrderList.vue";
+import Logout from "@/components/member/Logout.vue";
 
 const routes = [
     { path: '/', component: Main},
     { path: '/login', component: Login},
+    { path: '/logout', component: Logout},
     { path: '/signup', component: Signup},
     { path: '/mypage', component: MyPage},
 
