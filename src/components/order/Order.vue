@@ -71,7 +71,10 @@
           {{item.productName}} {{item.productOptionCode}}
         </div>
         <div>
-          {{item.price}}
+          {{item.price * item.cnt}}
+        </div>
+        <div>
+          {{item.cnt}}
         </div>
       </div>
     </div>
@@ -124,11 +127,16 @@ export default {
       const product = JSON.parse(this.$route.params.product);
       for (let i = 0; i < product.length; i++) {
         const productSeq = product[i].productSeq;
+        const cnt = product[i].cnt;
         const res = await productApi(productSeq);
 
         if (res.code === '0000') {
-          // TODO: cnt 추가
           this.orderProduct.push(res.data);
+          this.orderProduct.map(item => {
+            if (item.productSeq == productSeq) {
+              item.cnt = cnt;
+            }
+          })
         } else {
           modalSetting("조회", res.code, res.message)
         }
