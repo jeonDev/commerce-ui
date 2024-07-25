@@ -114,19 +114,11 @@ export default {
         }
       });
       const res = await orderApi({
-        buyProducts: buyProducts
+        buyProducts: buyProducts,
+        isPayment: true
       })
 
-      if (res.code === '0000') {
-        const orderSeq = res.data;
-        const paymentRes = await paymentApi({
-          orderSeq : orderSeq
-        });
-
-        console.log(paymentRes);
-      } else {
-        modalSetting("주문 실패", res.code, res.message);
-      }
+      modalSetting("주문 결과", res.code, res.message);
     },
     async productDetailGetApiCall() {
       const product = JSON.parse(this.$route.params.product);
