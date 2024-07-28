@@ -39,3 +39,13 @@ export async function adminProductAdd(productInfo) {
             return err.response.data;
         })
 }
+
+export async function adminProductListApi(request) {
+    return await axios.get('/admin/product/list', {params: request})
+        .then(res => {
+            return res.data;
+        })
+        .catch(err => {
+            return err.response.data;
+        })
+}

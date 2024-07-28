@@ -9,6 +9,7 @@ import MyPage from "@/components/member/MyPage.vue";
 import Order from "@/components/order/Order.vue";
 import AdminOrderList from "@/components/admin/AdminOrderList.vue";
 import Logout from "@/components/member/Logout.vue";
+import AdminProductStockManage from "@/components/admin/AdminProductStockManage.vue";
 
 const routes = [
     { path: '/', component: Main},
@@ -23,6 +24,7 @@ const routes = [
     { path: '/order/:product', name: 'order', component: Order},
 
     { path: '/admin/product/manage', component: AdminProductManage},
+    { path: '/admin/product/stock/manage', component: AdminProductStockManage},
     { path: '/admin/order/list', component: AdminOrderList}
 ]
 
