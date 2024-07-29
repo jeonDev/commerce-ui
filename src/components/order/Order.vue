@@ -94,7 +94,7 @@
 
 import {productApi} from "@/api/ProductApi.js";
 import {modalSetting} from "@/utils/utils.js";
-import {orderApi, paymentApi} from "@/api/Order.js";
+import {orderApi} from "@/api/Order.js";
 
 export default {
   data() {
@@ -133,7 +133,7 @@ export default {
         if (res.code === '0000') {
           this.orderProduct.push(res.data);
           this.orderProduct.map(item => {
-            if (item.productSeq == productSeq) {
+            if (item.productSeq === productSeq) {
               item.cnt = cnt;
             }
           })

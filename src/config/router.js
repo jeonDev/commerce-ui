@@ -4,12 +4,12 @@ import Signup from "@/components/member/Signup.vue";
 import Login from "@/components/member/Login.vue";
 import ProductList from "@/components/product/ProductList.vue";
 import ProductDetail from "@/components/product/ProductDetail.vue";
-import AdminProductManage from "@/components/admin/AdminProductManage.vue";
+import AdminProductManage from "@/components/admin/AdminProductInfoManage.vue";
 import MyPage from "@/components/member/MyPage.vue";
 import Order from "@/components/order/Order.vue";
 import AdminOrderList from "@/components/admin/AdminOrderList.vue";
 import Logout from "@/components/member/Logout.vue";
-import AdminProductStockManage from "@/components/admin/AdminProductStockManage.vue";
+import AdminProductStockManage from "@/components/admin/AdminProductManage.vue";
 
 const routes = [
     { path: '/', component: Main},
