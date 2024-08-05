@@ -23,7 +23,7 @@ const routes = [
 
     { path: '/order/:product', name: 'order', component: Order},
 
-    { path: '/admin/product/manage', component: AdminProductManage},
+    { path: '/admin/product/manage/:productInfoSeq?', component: AdminProductManage},
     { path: '/admin/product/stock/manage', component: AdminProductStockManage},
     { path: '/admin/order/list', component: AdminOrderList}
 ]

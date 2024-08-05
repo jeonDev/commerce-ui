@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-end">
       <b-button
           variant="outline-success"
-          @click="movePageToManage"
+          @click="movePageToManage('')"
       >
         상품 등록
       </b-button>
@@ -68,6 +68,11 @@ export default {
   },
   methods: {
     movePageToManage(productInfoSeq) {
+      console.log(productInfoSeq)
+      this.$router.push({
+        path: `/admin/product/manage/${productInfoSeq}`,
+      })
+
        console.log(productInfoSeq);
     },
     movePageToStockManage(productInfoSeq) {

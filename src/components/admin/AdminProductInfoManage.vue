@@ -91,11 +91,12 @@
 
 <script>
 import {isNullOrEmpty, modalSetting} from "@/utils/utils.js";
-import {adminProductAdd} from "@/api/ProductApi.js";
+import {adminProductAdd, productDetailApi} from "@/api/ProductApi.js";
 
 export default {
   data() {
     return {
+      productInfoSeq: null,
       request: {
         "productName": "",
         "productDetail": "",
@@ -116,6 +117,16 @@ export default {
     async addProduct() {
       const res = await adminProductAdd(this.request);
       modalSetting('등록 결과', res.code, res.message)
+    },
+    async productInfoGetApiCall(productInfoSeq) {
+      const res = await productDetailApi(productInfoSeq);
+      this.request = res.data;
+    }
+  },
+  created() {
+    this.productInfoSeq = this.$route.params.productInfoSeq;
+    if (this.productInfoSeq !== '') {
+      this.productInfoGetApiCall(this.productInfoSeq)
     }
   }
 }
