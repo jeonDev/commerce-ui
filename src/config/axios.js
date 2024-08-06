@@ -72,7 +72,10 @@ const unauthorizedProcess = () => {
     sessionStorage.removeItem("authority");
     store.commit('showModal', {
         code: '',
-        message: '로그인 정보 없음'
+        message: '로그인 정보 없음',
+        callback: () => {
+            location.href = '/'
+        }
     })
 }
 
