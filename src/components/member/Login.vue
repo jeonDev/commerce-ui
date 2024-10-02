@@ -21,6 +21,10 @@
           variant="success"
           @click="loginApiCall"
       >로그인</b-button>
+      <b-button
+          variant="success"
+          @click="loginGet('GITHUB')"
+      >Github</b-button>
     </div>
   </div>
 </template>
@@ -28,7 +32,7 @@
 <script>
 
 
-import {loginApi} from "@/api/MemberApi.js";
+import {getOauthLoginPageApi, loginApi} from "@/api/MemberApi.js";
 import {isNullOrEmpty, modalSetting} from "@/utils/utils.js";
 
 export default {
@@ -58,10 +62,12 @@ export default {
         sessionStorage.setItem("authority", authority);
         location.href = '/';
       }
+    },
+    async loginGet(type) {
+      const res = await getOauthLoginPageApi({type: type});
+      console.log(res.data);
+
     }
   }
 }
 </script>
-<style scoped>
-
-</style>

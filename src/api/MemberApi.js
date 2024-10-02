@@ -20,6 +20,16 @@ export async function loginApi(request) {
         })
 }
 
+export async function getOauthLoginPageApi(request) {
+    return await axios.get('/oauth/login', {params: request})
+        .then(res => {
+            return res.data;
+        })
+        .catch(err => {
+            return err.response.data;
+        })
+}
+
 export async function getMyUserInfo() {
     return await axios.get('/v1/myInfo')
         .then(res => {
