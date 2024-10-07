@@ -49,3 +49,14 @@ export async function updateUserInfo(request) {
             return err.response.data;
         })
 }
+
+/** OAuth */
+export async function githubCallback(request) {
+    return await axios.get('/oauth/github/callback', {params: request})
+        .then(res => {
+            return res.data;
+        })
+        .catch(err => {
+            return err.response.data;
+        })
+}

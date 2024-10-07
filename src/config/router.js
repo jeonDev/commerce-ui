@@ -10,6 +10,7 @@ import Order from "@/components/order/Order.vue";
 import AdminOrderList from "@/components/admin/AdminOrderList.vue";
 import Logout from "@/components/member/Logout.vue";
 import AdminProductStockManage from "@/components/admin/AdminProductManage.vue";
+import OAuthGithubCallback from "@/components/oauth/OAuthGithubCallback.vue";
 
 const routes = [
     { path: '/', component: Main},
@@ -17,6 +18,8 @@ const routes = [
     { path: '/logout', component: Logout},
     { path: '/signup', component: Signup},
     { path: '/mypage', component: MyPage},
+
+    { path: '/oauth/github/callback', component: OAuthGithubCallback},
 
     { path: '/product', component: ProductList},
     { path: '/product/:productInfoSeq', component: ProductDetail},

@@ -65,8 +65,7 @@ export default {
     },
     async loginGet(type) {
       const res = await getOauthLoginPageApi({type: type});
-      console.log(res.data);
-
+      location.href = res.data;
     }
   }
 }
