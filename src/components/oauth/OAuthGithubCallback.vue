@@ -8,20 +8,27 @@
 
 import {githubCallback} from "@/api/MemberApi.js";
 import {useRoute} from "vue-router";
+import {modalSetting} from "@/utils/utils.js";
 
 export default {
   methods: {
     async callback() {
       const route = useRoute();
       const code = route.query.code;
-      const result = await githubCallback({code:code});
-      console.log(result);
-      if (result.code === '0000') {
-        // TODO: 성공 처리
+      const res = await githubCallback({code:code});
+      if (res.code === '0000') {
+        const accessToken = res.data.accessToken;
+        const authority = res.data.authority;
+        sessionStorage.setItem("token", accessToken);
+        sessionStorage.setItem("authority", authority);
+        location.href = '/';
       } else {
-        // TODO: 실패 처리
+        modalSetting('연동 실패',
+            res.code,
+            res.message,
+            () => location.href = '/login'
+        );
       }
-      location.href = '/'
     }
   }, created() {
     this.callback()
