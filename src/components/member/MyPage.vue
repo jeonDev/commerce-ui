@@ -176,7 +176,7 @@
         v-model="isPointHistoryShow"
     >
       <div v-for="item in pointHistory">
-        {{item.point}} {{item.createDate}} {{item.pointProcessStatus}}
+        {{item.point}} {{item.createDt}} {{item.pointProcessStatus}}
       </div>
     </b-modal>
 
@@ -235,7 +235,7 @@ export default {
     async pointAdjustmentHistory() {
       this.isPointHistoryShow = true;
       const res = await selectPointHistory();
-      if (res.code === '0000') this.pointHistory = res.response;
+      if (res.code === '0000') this.pointHistory = res.data.list;
     },
     async terminate() {
       // TODO: 회원 탈퇴
